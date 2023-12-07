@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * Classe responsável por carregar os dados de acesso do usuário para efetuar a autenticação
@@ -36,13 +37,12 @@ public class UsuarioService {
      * @throws EntityNotFoundException
      */
     public UsuarioDto login(UsuarioLogin usuarioInput) throws EntityNotFoundException {
-        Usuario usuario = usuarioRepository.findByEmail(usuarioInput.email())
-                .orElseThrow(() -> new EntityNotFoundException("Usuário não cadastrado."));
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(usuarioInput.email());
         /* Valida se as senhas conferem de acordo com o email informado */
-        if (!verificarSenha(usuarioInput.senha(), usuario.getSenha())) {
+        if (!verificarSenha(usuarioInput.senha(), usuario.get().getSenha())) {
             throw new BadCredentialsException("Senha incorreta. Por favor, verifique.");
         }
-        return new UsuarioDto(usuario.getEmail(), usuario.getNome());
+        return new UsuarioDto(usuario.get().getEmail(), usuario.get().getNome());
     }
 
     public UsuarioDto create(UsuarioInput usuarioInput) {
