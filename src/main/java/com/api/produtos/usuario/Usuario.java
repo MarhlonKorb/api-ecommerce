@@ -1,11 +1,11 @@
 package com.api.produtos.usuario;
 
-import com.api.produtos.abstractentities.AbstractEntity;
+import com.api.produtos.abstractentities.EntidadeAuditada;
 import com.api.produtos.usuario.enums.TipoUsuario;
 import jakarta.persistence.*;
 
 @Entity
-public class Usuario extends AbstractEntity {
+public class Usuario extends EntidadeAuditada {
 
     @Enumerated
     private TipoUsuario tipoUsuario;

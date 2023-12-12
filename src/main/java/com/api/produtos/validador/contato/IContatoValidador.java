@@ -1,4 +1,6 @@
-package com.api.produtos.contato;
+package com.api.produtos.validador.contato;
+
+import com.api.produtos.contato.Contato;
 
 /**
  * Interface para validação da entindade contato
@@ -10,4 +12,5 @@ public interface IContatoValidador {
      * @param contato
      */
     public void validar(Contato contato);
+
 }

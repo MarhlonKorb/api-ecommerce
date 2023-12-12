@@ -9,10 +9,10 @@ import java.util.Set;
 @RequestMapping("/produto")
 public class ProdutoController {
 
-    private ProdutoService produtoService;
+    private ProdutoServiceImpl produtoService;
 
     @Autowired
-    public void setProdutoService(ProdutoService produtoService) {
+    public void setProdutoService(ProdutoServiceImpl produtoService) {
         this.produtoService = produtoService;
     }
 
@@ -33,6 +33,6 @@ public class ProdutoController {
 
     @DeleteMapping("{id}")
     public void deleteById(@PathVariable Long id){
-        produtoService.deleteById(id);
+        produtoService.delete(id);
     }
 }

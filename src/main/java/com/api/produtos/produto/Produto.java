@@ -1,15 +1,16 @@
 package com.api.produtos.produto;
 
-import com.api.produtos.abstractentities.AbstractEntity;
+import com.api.produtos.abstractentities.EntidadeAuditada;
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity(name = "produto")
-public class Produto extends AbstractEntity {
+public class Produto extends EntidadeAuditada {
     @Column
     private String nome;
     @Column
     private String descricao;
-
     @Column
     private String imgLink;
 

@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/contato")
 public class ContatoController {
 
-    private ContatoService contatoService;
+    private ContatoServiceImpl contatoService;
 
     @Autowired
-    public void setContatoService(ContatoService contatoService) {
+    public void setContatoService(ContatoServiceImpl contatoService) {
         this.contatoService = contatoService;
     }
 
     @PostMapping()
-    public Contato create(@RequestBody Contato contato){
+    public Contato create(@RequestBody Contato contato) {
         return contatoService.create(contato);
     }
 }

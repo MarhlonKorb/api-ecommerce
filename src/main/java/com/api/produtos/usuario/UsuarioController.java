@@ -26,15 +26,4 @@ public class UsuarioController {
         return usuarioService.create(input);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody UsuarioLogin usuario) {
-        try {
-            usuarioService.login(usuario);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Falha ao realizar o login. " + e.getMessage());
-        } catch (Exception e) {
-            throw new RuntimeException(e.getCause());
-        }
-    }
 }

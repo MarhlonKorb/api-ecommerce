@@ -1,9 +1,11 @@
 package com.api.produtos.contato;
-import com.api.produtos.abstractentities.AbstractEntity;
-import jakarta.persistence.*;
+
+import com.api.produtos.abstractentities.EntidadeAuditada;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 
 @Entity
-public class Contato extends AbstractEntity {
+public class Contato extends EntidadeAuditada {
     @Column
     private String nome;
     @Column(nullable = false, unique = true)

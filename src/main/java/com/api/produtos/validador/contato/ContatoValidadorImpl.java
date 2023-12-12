@@ -1,5 +1,6 @@
-package com.api.produtos.contato;
+package com.api.produtos.validador.contato;
 
+import com.api.produtos.contato.Contato;
 import com.api.produtos.validador.email.EmailValidador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,6 @@ public class ContatoValidadorImpl implements IContatoValidador {
     @Override
     public void validar(Contato contato) {
         validarNome(contato.getNome());
-        emailValidador.validarEmail(contato.getEmail());
+        emailValidador.validar(contato.getEmail());
     }
 }

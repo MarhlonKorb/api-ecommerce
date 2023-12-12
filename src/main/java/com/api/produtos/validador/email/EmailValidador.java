@@ -13,11 +13,9 @@ import java.util.regex.Pattern;
  * Classe que executa a validação de email
  */
 @Component
-public class EmailValidador {
+public class EmailValidador implements IValidadorEmail{
     /* Regex para comparar a formatação do email recebido */
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    private Pattern pattern;
-    private Matcher matcher;
 
     private ContatoRepository contatoRepository;
 
@@ -26,15 +24,16 @@ public class EmailValidador {
         this.contatoRepository = contatoRepository;
     }
 
-    public void validarEmail(String email) {
-        pattern = Pattern.compile(EMAIL_PATTERN);
+    @Override
+    public void validar(String email) {
+        final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         try {
             if (email == null || email.isEmpty()) {
                 throw new FormatoEmailInvalidoException("E-mail não pode estar vazio.");
             }
-            matcher = pattern.matcher(email);
+            final Matcher matcher = pattern.matcher(email);
             if (!matcher.matches()) {
-                throw new FormatoEmailInvalidoException("Formato do e-mail é inválido.");
+                throw new FormatoEmailInvalidoException("Formato de e-mail inválido.");
             }
             if(contatoRepository.findByEmail(email) != null){
                 throw new DataIntegrityViolationException("E-mail já cadastrado.");
