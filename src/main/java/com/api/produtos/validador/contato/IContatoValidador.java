@@ -11,6 +11,10 @@ public interface IContatoValidador {
      * Executa a validação do contato
      * @param contato
      */
-    public void validar(Contato contato);
+    void validar(Contato contato);
+
+    void validaIsNotCadastrado(String email);
+
+    void validarNome(String nome);
 
 }
