@@ -18,6 +18,17 @@ public class Usuario extends EntidadeAuditada {
     @Column(unique = true, name = "senha")
     private String senha;
 
+    public Usuario() {
+    }
+
+    public Usuario(String email, String nome, String senha) {
+        super();
+        this.email = email;
+        this.nome = nome;
+        this.senha = senha;
+    }
+
+
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }

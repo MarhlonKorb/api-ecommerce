@@ -1,10 +1,8 @@
 package com.api.produtos.produto;
 
 import com.api.produtos.abstractentities.EntidadeAuditada;
-import jakarta.persistence.*;
-
-import java.util.Date;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 @Entity(name = "produto")
 public class Produto extends EntidadeAuditada {
     @Column
@@ -13,6 +11,13 @@ public class Produto extends EntidadeAuditada {
     private String descricao;
     @Column
     private String imgLink;
+
+    public Produto() {
+    }
+
+    public Produto(String nome, String descricao, String imgLink) {
+        super();
+    }
 
     public String getNome() {
         return nome;

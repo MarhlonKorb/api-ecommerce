@@ -3,17 +3,14 @@ package com.api.produtos.produto;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
-    private ProdutoRepository produtoRepository;
-
     @Autowired
-    private void setProdutoRepository(ProdutoRepository produtoRepository) {
-        this.produtoRepository = produtoRepository;
-    }
+    private ProdutoRepository produtoRepository;
 
     public Set<Produto> getAll() {
         return new HashSet<>(produtoRepository.findAll());
@@ -25,10 +22,12 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     public Produto update(Produto produto) {
         final Produto produtoEncontrado = produtoRepository.findById(produto.getId()).orElseThrow(EntityNotFoundException::new);
-        produtoEncontrado.setNome(produto.getNome());
-        produtoEncontrado.setDescricao(produto.getDescricao());
-        produtoEncontrado.setImgLink(produto.getImgLink());
-        return produtoRepository.save(produtoEncontrado);
+        final Produto produtoBuilder = new ProdutoBuilderImpl()
+                .id(produtoEncontrado.getId())
+                .nome(produto.getNome())
+                .descricao(produto.getDescricao())
+                .imgLink(produto.getImgLink()).build();
+        return produtoRepository.save(produtoBuilder);
     }
 
     public void delete(Long id) {

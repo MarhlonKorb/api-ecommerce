@@ -26,7 +26,7 @@ public class EmailValidador implements IValidadorEmail {
                 throw new FormatoEmailInvalidoException("Formato de e-mail inválido.");
             }
         } catch (FormatoEmailInvalidoException e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 

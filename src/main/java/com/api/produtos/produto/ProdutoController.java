@@ -9,7 +9,7 @@ import java.util.Set;
 @RequestMapping("/produto")
 public class ProdutoController {
 
-    private ProdutoServiceImpl produtoService;
+    private ProdutoService produtoService;
 
     @Autowired
     public void setProdutoService(ProdutoServiceImpl produtoService) {
