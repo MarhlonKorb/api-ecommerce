@@ -13,17 +13,6 @@ public class ContatoValidadorImpl extends AbstractContatoValidador {
     @Autowired
     private ContatoRepository contatoRepository;
 
-    /**
-     * Executa a validação do nome
-     * @param nome
-     * @return String
-     */
-    public void validarNome(String nome) {
-        if(nome == null || nome.isEmpty()){
-            throw new IllegalArgumentException("O nome não pode estar vazio.");
-        }
-    }
-
     @Override
     public void validaIsNotCadastrado(String email){
         if(contatoRepository.findByEmail(email) != null){

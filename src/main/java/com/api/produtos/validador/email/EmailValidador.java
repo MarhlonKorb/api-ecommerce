@@ -1,6 +1,7 @@
 package com.api.produtos.validador.email;
 
 import com.api.produtos.contato.exception.FormatoEmailInvalidoException;
+import com.api.produtos.utils.mensagem.MensagemUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
@@ -19,7 +20,8 @@ public class EmailValidador implements IValidadorEmail {
         final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         try {
             if (email == null || email.isEmpty()) {
-                throw new FormatoEmailInvalidoException("E-mail não pode estar vazio.");
+                String mensagem = MensagemUtils.getMensagem("campo.email.obrigatorio");
+                throw new FormatoEmailInvalidoException(mensagem);
             }
             final Matcher matcher = pattern.matcher(email);
             if (!matcher.matches()) {

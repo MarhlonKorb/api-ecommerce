@@ -2,7 +2,7 @@ package com.api.produtos.usuario;
 
 import com.api.produtos.usuario.dto.UsuarioDto;
 import com.api.produtos.usuario.dto.UsuarioInput;
-import com.api.produtos.validador.senha.ISenhaService;
+import com.api.produtos.validador.email.IValidadorEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +14,15 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private UsuarioFactory usuarioFactory;
 
     @Autowired
-    private ISenhaService iSenhaService;
+    private IValidadorEmail iValidadorEmail;
 
     public UsuarioDto create(UsuarioInput usuarioInput) {
-        final String senhaCriptografada = iSenhaService.criptografarSenha(usuarioInput.senha());
-        final Usuario usuario = new UsuarioBuilderImpl()
-                .email(usuarioInput.email())
-                .nome(usuarioInput.nome())
-                .senha(senhaCriptografada)
-                .build();
+        iValidadorEmail.validar(usuarioInput.email());
+        Usuario usuario = usuarioFactory.criar(usuarioInput);
         usuarioRepository.save(usuario);
         return new UsuarioDto(usuario.getEmail(), usuario.getNome());
     }

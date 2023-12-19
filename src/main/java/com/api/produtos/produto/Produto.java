@@ -3,11 +3,15 @@ package com.api.produtos.produto;
 import com.api.produtos.abstractentities.EntidadeAuditada;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotEmpty;
+
 @Entity(name = "produto")
 public class Produto extends EntidadeAuditada {
     @Column
+    @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String nome;
     @Column
+    @NotEmpty(message = "{campo.descricao.obrigatorio}")
     private String descricao;
     @Column
     private String imgLink;

@@ -3,6 +3,7 @@ package com.api.produtos.usuario;
 import com.api.produtos.abstractentities.EntidadeAuditada;
 import com.api.produtos.usuario.enums.TipoUsuario;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Usuario extends EntidadeAuditada {
@@ -10,12 +11,14 @@ public class Usuario extends EntidadeAuditada {
     @Enumerated
     private TipoUsuario tipoUsuario;
     @Column(unique = true)
+    @NotEmpty(message = "{campo.email.obrigatorio}")
     private String email;
 
     @Column(unique = true)
     private String nome;
 
     @Column(unique = true, name = "senha")
+    @NotEmpty(message = "{campo.senha.obrigatorio}")
     private String senha;
 
     public Usuario() {

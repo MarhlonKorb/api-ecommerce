@@ -1,6 +1,6 @@
 package com.api.produtos.contato;
 
-import com.api.produtos.validador.contato.IContatoValidador;
+import com.api.produtos.validador.IValidador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ public class ContatoServiceImpl implements ContatoService {
     private ContatoRepository contatoRepository;
 
     @Autowired
-    private IContatoValidador contatoValidador;
+    private IValidador<Contato> contatoValidador;
 
     public Contato create(Contato contato) {
         contatoValidador.validar(contato);

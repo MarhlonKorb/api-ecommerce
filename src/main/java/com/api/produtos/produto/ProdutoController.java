@@ -1,5 +1,6 @@
 package com.api.produtos.produto;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,12 +10,8 @@ import java.util.Set;
 @RequestMapping("/produto")
 public class ProdutoController {
 
-    private ProdutoService produtoService;
-
     @Autowired
-    public void setProdutoService(ProdutoServiceImpl produtoService) {
-        this.produtoService = produtoService;
-    }
+    private ProdutoService produtoService;
 
     @GetMapping()
     public Set<Produto> getAll(){
@@ -22,12 +19,12 @@ public class ProdutoController {
     }
 
     @PutMapping
-    public Produto update(@RequestBody Produto produto){
+    public Produto update(@RequestBody @Valid Produto produto){
         return produtoService.update(produto);
     }
 
     @PostMapping()
-    public Produto create(@RequestBody Produto produto){
+    public Produto create(@RequestBody @Valid Produto produto){
         return produtoService.create(produto);
     }
 
