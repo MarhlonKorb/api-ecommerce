@@ -25,11 +25,11 @@ CREATE TABLE IF NOT EXISTS usuario (
     senha VARCHAR(255),
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_ultima_alteracao TIMESTAMP DEFAULT null,
-    tipo_usuario VARCHAR(9),
+    user_role VARCHAR(9),
     PRIMARY KEY (id),
     UNIQUE (email, nome)
 );
 
 INSERT INTO usuario
-(id, nome, email, senha, data_criacao, data_ultima_alteracao, tipo_usuario)
-VALUES(1, 'admin', 'admin@ecommerce.com', '$2a$10$VM7Gg2.MCVBECX5xYWJG2OtTDemJ1TVYQBegTy1HBd8Zus678E9aC', CURRENT_TIMESTAMP, null, 'ADMIN');
+(id, nome, email, senha, data_criacao, data_ultima_alteracao, user_role)
+VALUES(1, 'admin', 'admin@ecommerce.com', '$2a$10$VM7Gg2.MCVBECX5xYWJG2OtTDemJ1TVYQBegTy1HBd8Zus678E9aC', CURRENT_TIMESTAMP, null, 'AS');
